@@ -58,9 +58,9 @@ export const MainSongsView: React.FC<ISongsViewProps> = ({ title, songs, playlis
 		matcher: allMatchingOptions,
 	})
 	const [customColumns, setCustomColumns] = useState([
-		SongTableColumn.Artists,
 		SongTableColumn.Time,
-		SongTableColumn.Genres,
+		SongTableColumn.Labels,
+		SongTableColumn.Artists,
 	]) // will most likely be overriden
 
 	const onRowClick = useCallback(
@@ -72,6 +72,7 @@ export const MainSongsView: React.FC<ISongsViewProps> = ({ title, songs, playlis
 
 	const onRowDoubleClick = useCallback(
 		({ song, idx, songs }: IRowEventsArgs) => {
+			// TODO: this shall be authed
 			changeSong(song)
 
 			if (songs) {

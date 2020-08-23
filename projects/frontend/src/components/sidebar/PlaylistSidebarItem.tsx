@@ -86,7 +86,7 @@ export const PlaylistSidebarItem: React.FC<IPlaylistSidebarItemProps> = ({
 			<HoverableTagLink
 				to={targetUrl}
 				onContextMenu={onContextMenu}
-				text={isMergedView ? playlistShareName : undefined}
+				// text={isMergedView ? playlistShareName : undefined}
 			>
 				<span>{playlist.name}</span>
 			</HoverableTagLink>

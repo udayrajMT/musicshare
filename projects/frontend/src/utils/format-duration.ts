@@ -11,5 +11,5 @@ export const formatDuration = (duration: number) => {
 	let remainder = duration - months * 30
 	const days = remainder
 
-	return [months ? `${months} Months, ` : ``, `${days} Days`].join(``)
+	return [months ? `${months} Month(s), ` : ``, `${days} Day(s)`].join(``)
 }

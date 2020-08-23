@@ -94,24 +94,48 @@ export const SongTableColumn: SongTableColumnMap = {
 			return null
 		},
 	},
+	Position: {
+		title: "#",
+		width: 40,
+		fixWidth: true,
+		key: "position",
+		sortable: true,
+		render: (song) => (isPlaylistSong(song) ? padStart(String(song.position), 3, "0") : "-1"),
+	},
 	Title: {
-		title: "Contact",
-		width: 170,
-		fixWidth: false,
+		title: "Member",
+		width: 220,
+		fixWidth: true,
 		key: "title",
 		sortable: true,
 		render: (song) => buildSongName(song),
 	},
 	Time: {
 		title: "OnCall Duration",
-		width: 120,
+		width: 200,
 		fixWidth: true,
 		key: "duration",
 		sortable: true,
 		render: (song) => formatDuration(song.duration),
 	},
+	Labels: {
+		title: "Contact(s)",
+		width: 80,
+		fixWidth: false,
+		key: "labels",
+		sortable: false,
+		render: (song) => (
+			<span>
+				{song.labels.map((label, idx) => (
+					<Tag key={label + idx} color="green">
+						{label}
+					</Tag>
+				))}
+			</span>
+		),
+	},
 	Artists: {
-		title: "Team",
+		title: "Team(s)", //TODO: think if it can ever be plural
 		width: 100,
 		fixWidth: false,
 		key: "artists",
@@ -126,14 +150,7 @@ export const SongTableColumn: SongTableColumnMap = {
 		sortable: true,
 		render: (song) => song.genres.join(", "),
 	},
-	Position: {
-		title: "#",
-		width: 40,
-		fixWidth: true,
-		key: "position",
-		sortable: true,
-		render: (song) => (isPlaylistSong(song) ? padStart(String(song.position), 3, "0") : "-1"),
-	},
+
 	Tags: {
 		title: "Tags",
 		width: 150,
@@ -145,22 +162,6 @@ export const SongTableColumn: SongTableColumnMap = {
 				{song.tags.map((tag, idx) => (
 					<Tag key={tag + idx} color="geekblue">
 						{tag}
-					</Tag>
-				))}
-			</span>
-		),
-	},
-	Labels: {
-		title: "Labels",
-		width: 80,
-		fixWidth: false,
-		key: "labels",
-		sortable: false,
-		render: (song) => (
-			<span>
-				{song.labels.map((label, idx) => (
-					<Tag key={label + idx} color="green">
-						{label}
 					</Tag>
 				))}
 			</span>

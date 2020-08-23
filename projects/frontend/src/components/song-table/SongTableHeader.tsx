@@ -6,7 +6,7 @@ import { SongSearch } from "./search/SongSearch"
 import { usePlayerActions } from "../../player/player-hook"
 import { ISongSearchFilter } from "./search/search-types"
 import { SongViewSettings, ISongViewSettings } from "./search/SongViewSettings"
-import { useSongDropzone } from "../upload/Dropzone"
+// import { useSongDropzone } from "../upload/Dropzone"
 import { IShareSong } from "@musicshare/shared-types"
 import { ArrowUpOutlined } from "@ant-design/icons"
 
@@ -42,9 +42,9 @@ interface ISongTableHeaderProps {
 export const SongTableHeader = React.memo(
 	({ songs, title, onSearchFilterChange, onSongViewSettingsChange }: ISongTableHeaderProps) => {
 		const { changeSong } = usePlayerActions()
-		const { open: triggerUploadModal } = useSongDropzone()
+		// const { open: triggerUploadModal } = useSongDropzone()
 
-		const durationSum = songs.reduce((acc, song) => acc + song.duration, 0)
+		// const durationSum = songs.reduce((acc, song) => acc + song.duration, 0);
 
 		const onClickSong = (song: IShareSong) => {
 			changeSong(song)
@@ -57,10 +57,10 @@ export const SongTableHeader = React.memo(
 						{title}
 					</Title>
 					<Text>
-						{songs.length} songs | {formatDuration(durationSum)}
+						{songs.length} onCalls {/* | {formatDuration(durationSum)*/}
 					</Text>
 				</MetaInfoContainer>
-				<HeaderButton icon={<ArrowUpOutlined />} onClick={triggerUploadModal} title="Upload" />
+				{/* <HeaderButton icon={<ArrowUpOutlined />} onClick={triggerUploadModal} title="Upload" /> */}
 				<SongViewSettings onChange={onSongViewSettingsChange} />
 				<SongSearch onClickSong={onClickSong} onSearchFilterChange={onSearchFilterChange} />
 			</SongTableHeaderFlexContainer>
