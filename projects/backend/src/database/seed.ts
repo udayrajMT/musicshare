@@ -33,7 +33,12 @@ interface ITestDataSchema {
 	users: { [P in Users]: Required<IUserDBResult> }
 	shares: { [P in Shares]: Required<IShareDBResult> & { user_ids: string[] } }
 	songs: { [P in Songs]: Required<ISongDBResult> }
-	playlists: { [P in Playlists]: Required<IPlaylistDBResult> & { songs: ISongDBResult[]; share_id: string } }
+	playlists: {
+		[P in Playlists]: Required<IPlaylistDBResult> & {
+			songs: ISongDBResult[]
+			share_id: string
+		}
+	}
 }
 
 export const testPassword = "test1234"
@@ -268,7 +273,7 @@ export const testData: ITestDataSchema = {
 	playlists: {
 		playlist1_library_user1: {
 			playlist_id: playlist1LibraryUser1ID,
-			name: "Playlist 1",
+			name: "OnCalls Collection 1",
 			date_removed: null,
 			songs: [songZeroOliverSmith, songPerthDusky, songContactAlastor],
 			date_added: moment().subtract(3, "hours").toDate(),
@@ -276,7 +281,7 @@ export const testData: ITestDataSchema = {
 		},
 		playlist2_library_user1: {
 			playlist_id: playlist2LibraryUser1ID,
-			name: "Playlist 2",
+			name: "OnCalls Collection 2",
 			date_removed: null,
 			songs: [
 				songZeroOliverSmith,
@@ -291,7 +296,7 @@ export const testData: ITestDataSchema = {
 		},
 		playlist_some_shared_library: {
 			playlist_id: playlistSomeSharedLibraryID,
-			name: "Some Shared Playlist 1",
+			name: "Some Shared OnCalls Collection 1",
 			date_removed: null,
 			songs: [songPerthDusky],
 			date_added: moment().subtract(3, "hours").toDate(),
@@ -320,7 +325,7 @@ export const createTestSongs = (amount: number) => {
 			date_last_edit: new Date(),
 			release_date: null,
 			is_rip: false,
-			artists: [faker.name.firstName(), faker.name.lastName()],
+			artists: [faker.name.firstName()], //, faker.name.lastName()],
 			remixer: [],
 			featurings: [],
 			type: "Remix",
@@ -353,7 +358,10 @@ export const seedDatabase = async ({ database, services }: IMakeDatabaseSeedArgs
 		for (const user of Object.values(testData.users)) {
 			await database.query(UsersTable.insertFromObj(user))
 
-			await passwordLoginService.register({ userID: user.user_id.toString(), password: testPassword })
+			await passwordLoginService.register({
+				userID: user.user_id.toString(),
+				password: testPassword,
+			})
 		}
 
 		for (const shareByUser of Object.values(testData.shares)) {
@@ -416,10 +424,10 @@ export const seedDatabase = async ({ database, services }: IMakeDatabaseSeedArgs
 		}
 
 		await Promise.all(
-			createPrefilledArray(50, {})
+			createPrefilledArray(5, {})
 				.map(
 					(_, idx): IPlaylistDBResult => ({
-						name: `Playlist ${idx}`,
+						name: `OnCalls Collection ${idx}`,
 						playlist_id: uuid(),
 						date_added: new Date(),
 						date_removed: null,

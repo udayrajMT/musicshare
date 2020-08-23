@@ -16,5 +16,5 @@ export const ShareSongs: React.FC = () => {
 	}
 	if (error) return <div>`Error!: ${error}`</div>
 
-	return <MainSongsView title="All songs" songs={songs} isMergedView={false} />
+	return <MainSongsView title="All onCalls" songs={songs} isMergedView={false} />
 }

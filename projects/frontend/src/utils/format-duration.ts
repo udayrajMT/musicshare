@@ -1,4 +1,5 @@
 export const formatDuration = (duration: number) => {
+	// Note: one second of song is one day of onCall
 	if (isNaN(duration)) {
 		return "00:00"
 	}
@@ -9,11 +10,8 @@ export const formatDuration = (duration: number) => {
 	remainder = remainder - minutes * 60
 	const seconds = remainder
 
-	if (hours > 0) {
-		return `${fillZeros(hours)}:${fillZeros(minutes)}:${fillZeros(seconds)}`
-	} else {
-		return `${fillZeros(minutes)}:${fillZeros(seconds)}`
-	}
+	// Assumption: onCalls will always be < 60 days
+	return `${fillZeros(seconds)} Days`
 }
 
 const fillZeros = (num: number) => (num < 10 ? `0${num}` : num)

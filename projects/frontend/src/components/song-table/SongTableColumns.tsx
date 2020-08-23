@@ -95,24 +95,24 @@ export const SongTableColumn: SongTableColumnMap = {
 		},
 	},
 	Title: {
-		title: "Title",
-		width: 250,
+		title: "Contact",
+		width: 170,
 		fixWidth: false,
 		key: "title",
 		sortable: true,
 		render: (song) => buildSongName(song),
 	},
 	Time: {
-		title: "Time",
-		width: 70,
+		title: "OnCall Duration",
+		width: 120,
 		fixWidth: true,
 		key: "duration",
 		sortable: true,
 		render: (song) => formatDuration(song.duration),
 	},
 	Artists: {
-		title: "Artists",
-		width: 150,
+		title: "Team",
+		width: 100,
 		fixWidth: false,
 		key: "artists",
 		sortable: true,
@@ -120,7 +120,7 @@ export const SongTableColumn: SongTableColumnMap = {
 	},
 	Genres: {
 		title: "Genres",
-		width: 100,
+		width: 70,
 		fixWidth: false,
 		key: "genres",
 		sortable: true,
@@ -229,7 +229,10 @@ export const useCalculatedColumnWidths = (columns: ISongTableColumn[]) => {
 					return { ...obj, [col.key]: `${col.width}px` }
 				}
 
-				return { ...obj, [col.key]: `${(col.width / accumulatedColumnPercentageWidths) * 100}%` }
+				return {
+					...obj,
+					[col.key]: `${(col.width / accumulatedColumnPercentageWidths) * 100}%`,
+				}
 			}, {}),
 		[columns, accumulatedColumnPercentageWidths],
 	)

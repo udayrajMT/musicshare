@@ -66,7 +66,7 @@ const SharePlaylistsSidebar = () => {
 	const addPlaylistButton = useMemo(
 		() => (
 			<Button type="dashed" size="small" onClick={() => setNewPlaylistName("")}>
-				New Playlist
+				New Team
 			</Button>
 		),
 		[setNewPlaylistName],
@@ -95,7 +95,7 @@ const SharePlaylistsSidebar = () => {
 			/>
 			{newPlaylistName !== null && (
 				<Prompt
-					title="New Playlist"
+					title="New Team"
 					okText="Create"
 					onSubmit={handleCreatePlaylist}
 					onCancel={() => setNewPlaylistName(null)}
@@ -164,7 +164,7 @@ const MergedPlaylistsSidebar = () => {
 		() => (
 			<Popover content={newPlaylistShareButtons} trigger="click">
 				<Button type="dashed" size="small" loading={loadingShares}>
-					New Playlist
+					New Team
 				</Button>
 			</Popover>
 		),
@@ -183,7 +183,7 @@ const MergedPlaylistsSidebar = () => {
 			/>
 			{newPlaylistName !== null && (
 				<Prompt
-					title="New Playlist"
+					title="New PlaylTeamist"
 					okText="Create"
 					onSubmit={handleCreatePlaylist}
 					onCancel={() => setNewPlaylistName(null)}
@@ -238,17 +238,17 @@ const PlaylistSidebarContent: React.FC<IPlaylistSidebarContent> = ({
 		<>
 			<SidebarSection title="General">
 				<SidebarItem selected={playlistID === null}>
-					<Link to={targetUrlAllSongs}>All songs</Link>
+					<Link to={targetUrlAllSongs}>All onCalls</Link>
 				</SidebarItem>
 			</SidebarSection>
 			<Scrollbars autoHide>
 				<SidebarSection
-					title="Playlists"
+					title="Teams"
 					overflowScroll
 					filter={{
 						onFilter: setSearchFilter,
 						value: searchFilter,
-						placeholder: "Filter playlists",
+						placeholder: "Filter teams",
 					}}
 				>
 					{filteredPlaylists.map((playlist) => (

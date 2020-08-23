@@ -39,8 +39,8 @@ export const SongViewSettings: React.FC<ISongViewSettingsProps> = ({ onChange })
 				onChange={(newColumns: string[]) => setColumnKeys(newColumns)}
 				style={{ width: 300 }}
 			>
-				<Select.Option value="duration">Duration</Select.Option>
-				<Select.Option value="artists">Artists</Select.Option>
+				<Select.Option value="duration">OnCall Duration</Select.Option>
+				<Select.Option value="artists">Team</Select.Option>
 				<Select.Option value="genres">Genres</Select.Option>
 				<Select.Option value="tags">Tags</Select.Option>
 				<Select.Option value="labels">Labels</Select.Option>
