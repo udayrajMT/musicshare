@@ -1,17 +1,15 @@
+// Note: one second of song is one day of onCall
+// So display format shall change here
+// Assumption: onCalls will always be < 60 days
+
+// Trade Mark: Ofcourse this function is common in table & player!
 export const formatDuration = (duration: number) => {
-	// Note: one second of song is one day of onCall
 	if (isNaN(duration)) {
-		return "00:00"
+		return "Unknown Days"
 	}
+	const months = Math.floor(duration / 30)
+	let remainder = duration - months * 30
+	const days = remainder
 
-	const hours = Math.floor(duration / 3600)
-	let remainder = duration - hours * 3600
-	const minutes = Math.floor(remainder / 60)
-	remainder = remainder - minutes * 60
-	const seconds = remainder
-
-	// Assumption: onCalls will always be < 60 days
-	return `${fillZeros(seconds)} Days`
+	return [months ? `${months} Months, ` : ``, `${days} Days`].join(``)
 }
-
-const fillZeros = (num: number) => (num < 10 ? `0${num}` : num)

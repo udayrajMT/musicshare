@@ -216,8 +216,8 @@ export const Player = () => {
 				progressText={displayText}
 				onClick={handleSeek}
 			>
-				<SliderCaptionLeft>{formatDuration(playedTime)}</SliderCaptionLeft>
-				<SliderCaptionRight>{formatDuration(remainingTime)}</SliderCaptionRight>
+				<SliderCaptionLeft>{formatDuration(playedTime) + ` passed`}</SliderCaptionLeft>
+				<SliderCaptionRight>{formatDuration(remainingTime) + ` to go`}</SliderCaptionRight>
 			</PlayerSlider>
 		),
 		[currentPlaybackProgress, currentBufferingProgress, displayText, handleSeek, playedTime, remainingTime],
